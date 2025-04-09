@@ -1,0 +1,83 @@
+Azure resource manager template is a JSON like file. It is used to define and deploy azure resources without interacting with the azure portal.
+
+It is a Infrastructure as Code (IaC).
+
+It contains mainly 6 things.
+1) $schema -> defines the version using
+2) contentVersion -> defines the version of contant (you can give whatever you want)
+3) parameters -> values can be passed in run time
+4) variables -> helpful in reuse
+5) resources -> actual infrastructure
+6) outputs -> information that is returned after deployment.
+
+We can't reference one parameter in another paramter.
+We can't reference one variable in another variable.
+
+$schema
+-----------------------------------------
+"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#"
+
+
+contentVersion
+-----------------------------------------
+"contentVersion": "1.0.0.0",
+
+
+parameters
+-----------------------------------------
+parameters": {
+  "webAppName": {
+    "defaultValue": "[concat(variables('baseName'), '-web')]",
+    "type": "String"
+  },
+  {
+    ............
+  }
+}
+
+variables
+----------------------------------------
+"variables": {
+    "baseName": "[concat(parameters('serviceName'), '-', parameters('environment'))]",
+    ...............
+}
+
+
+resources
+-----------------------------------------
+"resources": [
+        {
+            "type": "Microsoft.Insights/components",
+            "apiVersion": "2020-02-02",
+            "name": "[parameters('appInsightsName')]",
+            "location": "[parameters('location')]",
+            "kind": "web",
+            "properties": {
+                "Application_Type": "web"
+            }
+        },
+        {
+          ................................
+        }
+]
+
+
+outputs
+---------------------------------------------
+"outputs": {
+      "web-site-link-to-use": {
+        "type": "string",
+        "value": "[concat('https://', parameters('webAppName'), '.azurewebsites.net')]"
+      },
+      {
+        .............
+      }
+}
+
+
+Built-in Functions
+-------------------
+resourceGroup()
+reference()
+resourceId()
+concat()
