@@ -30,7 +30,47 @@ Can't connect with On-prem Vnet	          Can connect with On-Prem Vnet
 
 
 
-IP Address:
+IP Address: It is the address of resources in azure to communicate with each other.
+
+Public IP Address: resources outside of azure can connect with azure resources by using public IP Address.
+Private IP Address: This address is used to communicate azure resources internally.
+
+IP Allocation Types:
+1. Dynamic 2. Static
+
+Dynamic Ip allocation: Azures assigns the next available IP address to the resources in the subnets address range. (Public IP Address)
+Static Ip allocation: You can assign the any available IP address to resources in the subnets address range. (Public IP Address and Private IP Address)
+
+
+Vnet Routing:
+Routing traffic in different subnets in vnet is taken care by azure. We can override azure default routing by using the routing tables.
+
+in destination ip address range we can provide subnet address space or 10.0.0.4/32(specifc VM only) or 0.0.0.0/0(any thing)
+
+Network Interface: It is an interconnection between VM and Vnets. A VM must have atleast one NIC. Multiple NIC allows VM to connect with multple subnets.
+
+Subnets:
+it is the logical segmentaion of resources in address space. Initally designed to solving the shortage of IP addreses.
+Why:: a) Locial divisions     b)  Improved network security   c) Improved network Performance
+
+Azure DNS::
+
+DNS is domain name service which is responisible for converting the URIs into IP addresses.
+Azure DNS is a hosting service to manage and resolve the domain names for your azure resources.
+Types:
+Azure Public DNS: manageing the domain names that are vissible to the public over internet
+Azure Private DNS: To manage the domain names that are not vissible to the pubilc over internet like within azure Vnets.
+
+NSG: Network Security Group
+It is used to define the rules to filter the incomming and out going traffic to and from azure resources.
+for each rule, we need to specify the port, protocal, priority, action, source and destination.
+
+ASG: Application Security Group
+It is used to grouping the resources that have same security needs. So we can apply security rules more easily to these group when compared to indiviall.
+for example, group all webservers.
+
+Service Tags are to group the IP addresess to make it easy to apply security rules. These are managed by azure. we can't create or assign by our choice.
+
 
 
 
