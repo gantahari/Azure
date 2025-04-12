@@ -1,0 +1,36 @@
+virtual Network
+
+Network : in general network refers to the collection of computers, devices and systems that are interconnected to share resources, information and communicate with each other.
+
+Virtual Network in azure is a logicall isolated network that allows azure resources to securly communicate with each other, to internet and to on-premises network.
+Components:
+1. Address space: a range of IP addresses. Azure will assign the next availabe ip address in address space to the resoures.
+2. Subnet: it is the logical segmentaion of resources in address space.
+3. Vnets are scoped to Region and Subscription. 
+
+Vnet - Vnet Connection:
+1. Peering
+2. Vnet-Vnet Connection Gateway
+3. ExpressRoute
+
+1. Peering allows to connect one vnet to another. Once peered they appers as one.
+Types of peering:
+a. Vnet Peering: it allows to connecting the virtual networks in same region.
+b. Global Peering: It allows to connecting to vnets in different regions.
+
+2. Vnet-Vnet Connection Gateway allows vnets to communicate with eachother over public internet using VPN gateway.
+
+Peering	                                  Vnet-Vnet Connection Gateway
+By default no encryption	                Encrypted
+Direct, using Private IP communication	  Over Public internet with VPM Gateway
+Low Latency	                              High Latency
+Can't connect with On-prem Vnet	          Can connect with On-Prem Vnet
+
+3. ExpressRoute
+
+
+
+IP Address:
+
+
+
