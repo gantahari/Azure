@@ -29,18 +29,16 @@ Can't connect with On-prem Vnet	          Can connect with On-Prem Vnet
 3. ExpressRoute
 
 
-
-IP Address: It is the address of resources in azure to communicate with each other.
-
-Public IP Address: resources outside of azure can connect with azure resources by using public IP Address.
-Private IP Address: This address is used to communicate azure resources internally.
-
 IP Allocation Types:
 1. Dynamic 2. Static
 
-Dynamic Ip allocation: Azures assigns the next available IP address to the resources in the subnets address range. (Public IP Address)
-Static Ip allocation: You can assign the any available IP address to resources in the subnets address range. (Public IP Address and Private IP Address)
+Dynamic Ip allocation: Azures assigns the next available IP address to the resources in the subnets address range. 
+Static Ip allocation: You can assign the any available IP address to resources in the subnets address range.
 
+IP Address: It is the address of resources in azure to communicate with each other.
+
+Public IP Address: resources outside of azure can connect with azure resources by using public IP Address. (Dynamic allocation)
+Private IP Address: This address is used to communicate azure resources internally. (Both)
 
 Vnet Routing:
 Routing traffic in different subnets in vnet is taken care by azure. We can override azure default routing by using the routing tables.
