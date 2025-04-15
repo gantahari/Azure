@@ -1,0 +1,28 @@
+There are 4main ways we can load balance in azure
+
+1. Load Balancer    2. Application Gateway    3. Front door service    4. Traffic manager
+
+1. Load Balancer
+It is a genaral purpose load balancer. It is two types again
+- Public Load balancer :: It uses public ip address (2VMS with webserver installed then use load balancer public ip to check which VM connecting)
+- Internal Load Balancer :: It uses private ip address (3VMs with 2 in backend pool with webserver installed then use private load balancer to check which VM connecting in backend pool from VM3)
+
+components:
+a) Front IP configuration :: This is the ip address of the load balancer 
+b) Backend pool :: This is where we need to define the pool of resources that are going to manage by load balancer
+c) Health Probe :: This is a special signal that is used by load balancer to check the health of resources in backend pool.
+d) Load balancing rule :: associating the frontend ip, backend pool and health probe. 
+
+Trubleshooting in Loadbalancer:
+i) VM is not responding to health pool
+  reasons:
+  -  vm is not health
+  -  vm listing port is blocked by NSG
+  -  Missconfiguration
+
+ii) VM is not responding to traffic
+  reasons:
+  - vm data port is blocked by NSG
+  - accesing the load balancer from the same VM
+  - accesing the private load balancer from the same backend pool resources
+
