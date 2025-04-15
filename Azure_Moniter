@@ -1,0 +1,57 @@
+Azure moniter is a service to maximize the productivity of the azure resources and applications by collecting the data, analysing and acting on the telemetry for the both cloud and on-prem env.
+
+Why:
+To detect and diagonistic the issuces across the applications and its dependecies by using application insights.
+To automate the scaling process
+To visuvalize the data using powerBI, workbooks and Views ect
+To dig down into troubleshouting
+
+Data Type: It stores the data in meterics and logs
+
+Working:
+Azure moniter service continuesly moniter the services such rg, subscriptions, VMs, Applications and stores this data in metrics and logs data stores.
+This data further used in
+- providing the insights for VM, containers and Applications
+- To visuvalize using powerBI, workbooks and Views
+- To analyise using metric analytics and log analytics
+- To automate the scaling process
+
+Metric:
+It is used to describe one ascept of system at a time. It is more light weighted. It is introduced for helps in faster alerting and to diagonstic the issues.
+It uses time series database to store the data.
+
+It contains
+- The value itself
+- Time the value is collected
+- Namespace that acts as catagory of the metric
+- resource name that is associated with metric
+
+Alerts:
+Alerts are to notify the important conditions. This is the result of continues monitering of the resources. It helps owner in case of any issue before user do. So owner is address the issue first.
+
+To set an alert we need target resource, cretieria, seviority and action.
+
+
+Logs:
+Logs describes the events that are collected priodically. This is a numerical data combined with text. It stores data in workspaces in the form of tables. KQL(Kusto Query Laungague) is used to write the queries. 
+
+Application insights:
+To diagonise and detect the issues across the applications and its dependecies using the application insights.
+
+Working:
+- Install a small instrumentaion package in the application
+- Setup application insights in the azure portal
+- This package now moniter the applications and sends the telemetry to azure moniter.
+
+What all does application insights moniter:
+Page Viewers, Exceptions, Response rate, Dependency rate
+
+Azure Backup Reports:
+Azure backup report service is a feature of azure backup service that gives the detailed reports/insights on the backuped item in azure.
+- These reports are useful in forecasting the cloud storage consumed
+azure backup service allows users to take on point backup of resources or Azure VMs.
+
+
+
+Recovery service vault: This is a service entity provided by MA to store the data or the configuration information of VM's, Workloads and Servers.
+
