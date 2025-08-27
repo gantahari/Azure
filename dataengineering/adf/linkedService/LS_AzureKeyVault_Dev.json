@@ -1,0 +1,10 @@
+{
+	"name": "LS_AzureKeyVault_Dev",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://devkvsecrectsadfhari.vault.azure.net/"
+		}
+	}
+}
