@@ -5,13 +5,22 @@
 			"referenceName": "LS_AzureBlobStorage_Dev",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"env": {
+				"type": "string",
+				"defaultValue": "dev"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "data.csv",
-				"container": "dev-output"
+				"container": {
+					"value": "@concat(pipeline().parameters.env,'-input')\r\n",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
