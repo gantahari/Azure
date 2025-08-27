@@ -5,7 +5,7 @@
 		"factoryName": {
 			"value": "dev-adf-hari"
 		},
-		"AzureBlobStorage1_connectionString": {
+		"AzureBlobStorageSAHARI_connectionString": {
 			"value": ""
 		},
 		"containerUri": {

@@ -7,9 +7,9 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "dev-adf-hari"
 		},
-		"AzureBlobStorage1_connectionString": {
+		"AzureBlobStorageSAHARI_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageSAHARI'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -38,8 +38,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureBlobStorage1_connectionString": {
-						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					"AzureBlobStorageSAHARI_connectionString": {
+						"value": "[parameters('AzureBlobStorageSAHARI_connectionString')]"
 					}
 				}
 			},

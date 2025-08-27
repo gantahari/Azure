@@ -7,9 +7,9 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "dev-adf-hari"
 		},
-		"AzureBlobStorage1_connectionString": {
+		"AzureBlobStorageSAHARI_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageSAHARI'"
 		}
 	},
 	"variables": {
@@ -17,13 +17,13 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline_sahari_input_output')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy data1",
+						"name": "Copy Input To Output",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -60,116 +60,6 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "SalesOrderID",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SalesOrderID",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "SalesOrderDetailID",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SalesOrderDetailID",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "OrderQty",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "OrderQty",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ProductID",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ProductID",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "UnitPrice",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "UnitPrice",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "UnitPriceDiscount",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "UnitPriceDiscount",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "LineTotal",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "LineTotal",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "rowguid",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "rowguid",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ModifiedDate",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ModifiedDate",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -179,14 +69,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "DelimitedText1",
+								"referenceName": "ConnectionToInput",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "DelimitedText2",
+								"referenceName": "ConnectionToOutput",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -199,17 +89,17 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText2')]"
+				"[concat(variables('factoryId'), '/datasets/ConnectionToInput')]",
+				"[concat(variables('factoryId'), '/datasets/ConnectionToOutput')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"name": "[concat(parameters('factoryName'), '/ConnectionToInput')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
+					"referenceName": "AzureBlobStorageSAHARI",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -217,8 +107,8 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "SalesLT.SalesOrderDetail (5).csv",
-						"container": "input"
+						"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
+						"container": "dev-input"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -265,16 +155,16 @@
 				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageSAHARI')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"name": "[concat(parameters('factoryName'), '/ConnectionToOutput')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
+					"referenceName": "AzureBlobStorageSAHARI",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -282,7 +172,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"container": "output"
+						"container": "dev-output"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -292,18 +182,18 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageSAHARI')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorageSAHARI')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+					"connectionString": "[parameters('AzureBlobStorageSAHARI_connectionString')]"
 				}
 			},
 			"dependsOn": []
