@@ -1,0 +1,60 @@
+{
+	"name": "ConnectionToInput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageSAHARI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
+				"container": "dev-input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SalesOrderID",
+				"type": "String"
+			},
+			{
+				"name": "SalesOrderDetailID",
+				"type": "String"
+			},
+			{
+				"name": "OrderQty",
+				"type": "String"
+			},
+			{
+				"name": "ProductID",
+				"type": "String"
+			},
+			{
+				"name": "UnitPrice",
+				"type": "String"
+			},
+			{
+				"name": "UnitPriceDiscount",
+				"type": "String"
+			},
+			{
+				"name": "LineTotal",
+				"type": "String"
+			},
+			{
+				"name": "rowguid",
+				"type": "String"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "String"
+			}
+		]
+	}
+}

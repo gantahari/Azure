@@ -1,0 +1,22 @@
+{
+	"name": "ConnectionToOutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageSAHARI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "dev-output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
