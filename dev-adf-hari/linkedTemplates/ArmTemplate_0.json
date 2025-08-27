@@ -218,7 +218,7 @@
 				"typeProperties": {
 					"recurrence": {
 						"frequency": "Minute",
-						"interval": 9,
+						"interval": 1,
 						"startTime": "2025-08-27T18:01:00",
 						"timeZone": "Eastern Standard Time"
 					}
