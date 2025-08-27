@@ -5,12 +5,18 @@
 			"referenceName": "AzureBlobStorageSAHARI",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"env": {
+				"type": "string",
+				"defaultValue": "dev"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "dev-output"
+				"container": "{env}-output"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
