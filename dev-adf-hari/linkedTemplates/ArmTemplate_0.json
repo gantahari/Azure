@@ -72,13 +72,22 @@
 					"referenceName": "LS_AzureBlobStorage_Dev",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"env": {
+						"type": "string",
+						"defaultValue": "dev"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
-						"container": "dev-input"
+						"container": {
+							"value": "@concat(pipeline().parameters.env, '-input')",
+							"type": "Expression"
+						}
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -137,13 +146,22 @@
 					"referenceName": "LS_AzureBlobStorage_Dev",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"env": {
+						"type": "string",
+						"defaultValue": "dev"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "data.csv",
-						"container": "dev-output"
+						"container": {
+							"value": "@concat(pipeline().parameters.env,'-input')\r\n",
+							"type": "Expression"
+						}
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
