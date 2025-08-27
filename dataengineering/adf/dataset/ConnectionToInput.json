@@ -5,13 +5,19 @@
 			"referenceName": "AzureBlobStorageSAHARI",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"env": {
+				"type": "string",
+				"defaultValue": "dev"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
-				"container": "dev-input"
+				"container": "{env}-input"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
