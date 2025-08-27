@@ -1,8 +1,8 @@
 {
-	"name": "DelimitedText2",
+	"name": "ConnectionToOutput",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "AzureBlobStorageSAHARI",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "output"
+				"container": "dev-output"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

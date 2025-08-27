@@ -1,8 +1,8 @@
 {
-	"name": "DelimitedText1",
+	"name": "ConnectionToInput",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "AzureBlobStorageSAHARI",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "SalesLT.SalesOrderDetail (5).csv",
-				"container": "input"
+				"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
+				"container": "dev-input"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
