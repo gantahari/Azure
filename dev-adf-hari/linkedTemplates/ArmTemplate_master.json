@@ -7,17 +7,9 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "dev-adf-hari"
 		},
-		"AzureBlobStorageSAHARI_connectionString": {
+		"AzureBlobStorage_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageSAHARI'"
-		},
-		"LS_AzureBlobStorage_Dev_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_AzureBlobStorage_Dev'"
-		},
-		"LS_AzureKeyVault_Dev_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://devkvsecrectsadfhari.vault.azure.net/"
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -46,14 +38,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureBlobStorageSAHARI_connectionString": {
-						"value": "[parameters('AzureBlobStorageSAHARI_connectionString')]"
-					},
-					"LS_AzureBlobStorage_Dev_connectionString": {
-						"value": "[parameters('LS_AzureBlobStorage_Dev_connectionString')]"
-					},
-					"LS_AzureKeyVault_Dev_properties_typeProperties_baseUrl": {
-						"value": "[parameters('LS_AzureKeyVault_Dev_properties_typeProperties_baseUrl')]"
+					"AzureBlobStorage_connectionString": {
+						"value": "[parameters('AzureBlobStorage_connectionString')]"
 					}
 				}
 			},

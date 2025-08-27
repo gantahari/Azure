@@ -7,17 +7,9 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "dev-adf-hari"
 		},
-		"AzureBlobStorageSAHARI_connectionString": {
+		"AzureBlobStorage_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageSAHARI'"
-		},
-		"LS_AzureBlobStorage_Dev_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_AzureBlobStorage_Dev'"
-		},
-		"LS_AzureKeyVault_Dev_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://devkvsecrectsadfhari.vault.azure.net/"
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		}
 	},
 	"variables": {
@@ -25,13 +17,13 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Copy_Data')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy data from Input to Output",
+						"name": "Copy data1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -77,16 +69,20 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_Input",
+								"referenceName": "DS_input",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"env": "dev"
+								}
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "DS_output",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"env": "dev"
+								}
 							}
 						]
 					}
@@ -97,17 +93,17 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DS_Input')]",
+				"[concat(variables('factoryId'), '/datasets/DS_input')]",
 				"[concat(variables('factoryId'), '/datasets/DS_output')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DS_Input')]",
+			"name": "[concat(parameters('factoryName'), '/DS_input')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "LS_AzureBlobStorage_Dev",
+					"referenceName": "AzureBlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
@@ -123,7 +119,7 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
 						"container": {
-							"value": "@concat(pipeline().parameters.env, '-input')",
+							"value": "@concat(pipeline().parameters.env,'-input')",
 							"type": "Expression"
 						}
 					},
@@ -172,7 +168,7 @@
 				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_AzureBlobStorage_Dev')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
 			]
 		},
 		{
@@ -181,7 +177,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "LS_AzureBlobStorage_Dev",
+					"referenceName": "AzureBlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
@@ -195,9 +191,8 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "data.csv",
 						"container": {
-							"value": "@concat(pipeline().parameters.env,'-input')\r\n",
+							"value": "@concat(pipeline().parameters.env,'-input')",
 							"type": "Expression"
 						}
 					},
@@ -206,90 +201,27 @@
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
-				"schema": [
-					{
-						"name": "SalesOrderID",
-						"type": "String"
-					},
-					{
-						"name": "SalesOrderDetailID",
-						"type": "String"
-					},
-					{
-						"name": "OrderQty",
-						"type": "String"
-					},
-					{
-						"name": "ProductID",
-						"type": "String"
-					},
-					{
-						"name": "UnitPrice",
-						"type": "String"
-					},
-					{
-						"name": "UnitPriceDiscount",
-						"type": "String"
-					},
-					{
-						"name": "LineTotal",
-						"type": "String"
-					},
-					{
-						"name": "rowguid",
-						"type": "String"
-					},
-					{
-						"name": "ModifiedDate",
-						"type": "String"
-					}
-				]
+				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_AzureBlobStorage_Dev')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStorageSAHARI')]",
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStorageSAHARI_connectionString')]"
+					"connectionString": "[parameters('AzureBlobStorage_connectionString')]"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/LS_AzureBlobStorage_Dev')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('LS_AzureBlobStorage_Dev_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_AzureKeyVault_Dev')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('LS_AzureKeyVault_Dev_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"name": "[concat(parameters('factoryName'), '/midnighttrigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -298,7 +230,7 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "Copy_Data",
+							"referenceName": "pipeline1",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
@@ -308,14 +240,15 @@
 				"typeProperties": {
 					"recurrence": {
 						"frequency": "Minute",
-						"interval": 5,
-						"startTime": "2025-08-27T14:01:00",
+						"interval": 3,
+						"startTime": "2025-08-27T15:09:00",
+						"endTime": "2025-08-29T18:09:00",
 						"timeZone": "Eastern Standard Time"
 					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Copy_Data')]"
+				"[concat(variables('factoryId'), '/pipelines/pipeline1')]"
 			]
 		}
 	]

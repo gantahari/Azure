@@ -5,14 +5,8 @@
 		"factoryName": {
 			"value": "dev-adf-hari"
 		},
-		"AzureBlobStorageSAHARI_connectionString": {
+		"AzureBlobStorage_connectionString": {
 			"value": ""
-		},
-		"LS_AzureBlobStorage_Dev_connectionString": {
-			"value": ""
-		},
-		"LS_AzureKeyVault_Dev_properties_typeProperties_baseUrl": {
-			"value": "https://devkvsecrectsadfhari.vault.azure.net/"
 		}
 	}
 }
