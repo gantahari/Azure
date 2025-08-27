@@ -3,13 +3,20 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Copy_Data",
+					"type": "PipelineReference"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Minute",
-				"interval": 1,
-				"startTime": "2025-08-27T18:01:00",
+				"interval": 5,
+				"startTime": "2025-08-27T14:01:00",
 				"timeZone": "Eastern Standard Time"
 			}
 		}
