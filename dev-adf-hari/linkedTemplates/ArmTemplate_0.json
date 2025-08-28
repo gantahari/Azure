@@ -55,7 +55,7 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
 						"container": {
-							"value": "@concat(pipeline().parameters.env,'-input')",
+							"value": "@concat(dataset().env,'-input')",
 							"type": "Expression"
 						}
 					},
@@ -128,7 +128,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"container": {
-							"value": "@concat(pipeline().parameters.env,'-output')",
+							"value": "@concat(dataset().env,'-output')",
 							"type": "Expression"
 						}
 					},
