@@ -8,16 +8,19 @@
 				"pipelineReference": {
 					"referenceName": "pipeline1",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"env": "dev"
 				}
 			}
 		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Minute",
-				"interval": 3,
+				"frequency": "Hour",
+				"interval": 1,
 				"startTime": "2025-08-27T15:09:00",
-				"endTime": "2025-08-29T18:09:00",
+				"endTime": "2025-08-27T23:09:00",
 				"timeZone": "Eastern Standard Time"
 			}
 		}
