@@ -6,9 +6,8 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"env": {
-				"type": "string",
-				"defaultValue": "dev"
+			"containerName": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -18,7 +17,7 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
 				"container": {
-					"value": "@concat(dataset().env,'-input')",
+					"value": "@dataset().containerName",
 					"type": "Expression"
 				}
 			},

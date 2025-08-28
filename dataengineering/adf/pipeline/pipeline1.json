@@ -52,7 +52,10 @@
 						"referenceName": "DS_input",
 						"type": "DatasetReference",
 						"parameters": {
-							"env": "dev"
+							"containerName": {
+								"value": "@concat(pipeline().parameters.env, '_input')",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -61,7 +64,10 @@
 						"referenceName": "DS_output",
 						"type": "DatasetReference",
 						"parameters": {
-							"env": "dev"
+							"containerName": {
+								"value": "@concat(pipeline().parameters.env, '_output')\n",
+								"type": "Expression"
+							}
 						}
 					}
 				]

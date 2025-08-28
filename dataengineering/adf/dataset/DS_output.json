@@ -6,9 +6,8 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"env": {
-				"type": "string",
-				"defaultValue": "dev"
+			"containerName": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -17,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"container": {
-					"value": "@concat(dataset().env,'-output')",
+					"value": "@dataset().containerName",
 					"type": "Expression"
 				}
 			},
