@@ -15,7 +15,6 @@
 			"type": "string",
 			"defaultValue": "dev"
 		}
-
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
