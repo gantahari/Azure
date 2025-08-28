@@ -81,7 +81,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"containerName": {
-										"value": "@concat(pipeline().parameters.env, '_input')",
+										"value": "@concat(pipeline().globalParameters.env, '-input')",
 										"type": "Expression"
 									}
 								}
@@ -93,7 +93,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"containerName": {
-										"value": "@concat(pipeline().parameters.env, '_output')\n",
+										"value": "@concat(pipeline().globalParameters.env, '-output')\n",
 										"type": "Expression"
 									}
 								}
