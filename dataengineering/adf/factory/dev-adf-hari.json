@@ -1,0 +1,12 @@
+{
+	"name": "dev-adf-hari",
+	"properties": {
+		"globalParameters": {
+			"env": {
+				"type": "string",
+				"value": "dev"
+			}
+		}
+	},
+	"location": "eastus"
+}
