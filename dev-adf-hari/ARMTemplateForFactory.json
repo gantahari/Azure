@@ -14,10 +14,6 @@
 		"midnighttrigger_properties_pipeline1_parameters_env": {
 			"type": "string",
 			"defaultValue": "dev"
-		},
-		"pipeline1_env": {
-			"type": "string",
-		 	"defaultValue": "dev"
 		}
 
 	},
@@ -77,36 +73,33 @@
 							}
 						},
 						"inputs": [
-						  {
-							"referenceName": "DS_input",
-							"type": "DatasetReference",
-							"parameters": {
-							  "env": "@pipeline().parameters.env"
+							{
+								"referenceName": "DS_input",
+								"type": "DatasetReference",
+								"parameters": {
+									"env": "dev"
+								}
 							}
-						  }
 						],
 						"outputs": [
-						  {
-							"referenceName": "DS_output",
-							"type": "DatasetReference",
-							"parameters": {
-							  "env": "@pipeline().parameters.env"
+							{
+								"referenceName": "DS_output",
+								"type": "DatasetReference",
+								"parameters": {
+									"env": "dev"
+								}
 							}
-						  }
 						]
-
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
 				"parameters": {
-					  "env": {
-					    "type": "string",
-					    "defaultValue": "[parameters('pipeline1_env')]"
-					  }
+					"env": {
+						"type": "string",
+						"defaultValue": "dev"
 					}
-
 				},
 				"annotations": []
 			},
@@ -125,12 +118,11 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-				  "env": {
-					"type": "string",
-					"defaultValue": "[parameters('pipeline1_env')]"
-				  }
-				}
-,
+					"env": {
+						"type": "string",
+						"defaultValue": "dev"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
