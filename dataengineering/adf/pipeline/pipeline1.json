@@ -67,6 +67,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"env": {
+				"type": "string",
+				"defaultValue": "dev"
+			}
+		},
 		"annotations": []
 	}
 }
