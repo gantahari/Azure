@@ -17,14 +17,34 @@ module "sa_module" {
     loc = var.loc
 }
 
-# module "kv_module" {
-#     source = "./modules/kv"
+module "kv_module" {
+    source = "./modules/kv"
 
-#     name = var.name
-#     res_type = var.kv_res
-#     env = var.env
-#     loc = var.loc
-# }
+    name = var.name
+    res_type = var.kv_res
+    env = var.env
+    loc = var.loc
+}
+
+module "adls_module" {
+  source = "./modules/adls"
+
+  name = var.name
+  res_type = var.adls_res
+  env = var.env
+  loc = var.loc
+}
+
+module "mssql_db_module" {
+  source = "./modules/sqldb"
+
+    name = var.name
+    res_type1 = var.mssql_server
+    res_type2 = var.mssql_db
+    env = var.env
+    loc = var.loc2
+    # loc2 =var.loc2
+}
 
 
 resource "azurerm_role_assignment" "adf_sa_identity" {
@@ -33,8 +53,8 @@ resource "azurerm_role_assignment" "adf_sa_identity" {
   principal_id = module.adf_module.adf_system_identity
 }
 
-# resource "azurerm_role_assignment" "adf_kv_identity" {
-#   scope = module.kv_module.kv_id
-#   role_definition_name = "Key Vault Secrets User"
-#   principal_id = module.adf_module.adf_system_identity
-# }
+resource "azurerm_role_assignment" "adf_kv_identity" {
+  scope = module.kv_module.kv_id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id = module.adf_module.adf_system_identity
+}

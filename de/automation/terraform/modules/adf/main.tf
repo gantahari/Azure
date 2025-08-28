@@ -15,6 +15,12 @@ resource "azurerm_data_factory" "adf" {
       branch_name = "main"
       root_folder = "/dataengineering/adf"
     }
+    global_parameter {
+      name = "env"
+      type = "String"
+      value = "${var.env}"
+    }
+    
 
     identity {
       type = "SystemAssigned"
