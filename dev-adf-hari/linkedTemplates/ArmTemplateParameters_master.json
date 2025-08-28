@@ -8,7 +8,31 @@
 		"AzureBlobStorage_connectionString": {
 			"value": ""
 		},
+		"AzureDataLakeStorageADLS_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase_Connection_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorageADLS_properties_typeProperties_url": {
+			"value": "https://devadlshari.dfs.core.windows.net/"
+		},
+		"AzureKeyVault_Connection_properties_typeProperties_baseUrl": {
+			"value": "https://devkvsecrectsadfhari.vault.azure.net/"
+		},
+		"AzureSqlDatabase_Connection_properties_typeProperties_server": {
+			"value": "dev-mssql-server-hari.database.windows.net"
+		},
+		"AzureSqlDatabase_Connection_properties_typeProperties_database": {
+			"value": "dev-mssql-db-hari"
+		},
+		"AzureSqlDatabase_Connection_properties_typeProperties_userName": {
+			"value": "hari"
+		},
 		"midnighttrigger_properties_pipeline1_parameters_env": {
+			"value": "dev"
+		},
+		"midnighttrigger_properties_SQL_ADLS_parameters_env": {
 			"value": "dev"
 		},
 		"default_properties_env_value": {
