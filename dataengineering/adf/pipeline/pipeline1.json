@@ -73,6 +73,12 @@
 				"defaultValue": "dev"
 			}
 		},
+		"variables": {
+			"env": {
+				"type": "String",
+				"defaultValue": "dev"
+			}
+		},
 		"annotations": []
 	}
 }
