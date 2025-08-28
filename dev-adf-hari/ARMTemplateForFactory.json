@@ -14,6 +14,10 @@
 		"midnighttrigger_properties_pipeline1_parameters_env": {
 			"type": "string",
 			"defaultValue": "dev"
+		},
+		"default_properties_env_value": {
+			"type": "string",
+			"defaultValue": "dev"
 		}
 	},
 	"variables": {
@@ -76,7 +80,10 @@
 								"referenceName": "DS_input",
 								"type": "DatasetReference",
 								"parameters": {
-									"env": "dev"
+									"containerName": {
+										"value": "@concat(pipeline().parameters.env, '_input')",
+										"type": "Expression"
+									}
 								}
 							}
 						],
@@ -85,7 +92,10 @@
 								"referenceName": "DS_output",
 								"type": "DatasetReference",
 								"parameters": {
-									"env": "dev"
+									"containerName": {
+										"value": "@concat(pipeline().parameters.env, '_output')\n",
+										"type": "Expression"
+									}
 								}
 							}
 						]
@@ -117,9 +127,8 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"env": {
-						"type": "string",
-						"defaultValue": "dev"
+					"containerName": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -129,7 +138,7 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
 						"container": {
-							"value": "@concat(dataset().env,'-input')",
+							"value": "@dataset().containerName",
 							"type": "Expression"
 						}
 					},
@@ -191,9 +200,8 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"env": {
-						"type": "string",
-						"defaultValue": "dev"
+					"containerName": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -202,7 +210,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"container": {
-							"value": "@concat(dataset().env,'-output')",
+							"value": "@dataset().containerName",
 							"type": "Expression"
 						}
 					},
@@ -262,6 +270,18 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pipeline1')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/globalparameters",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"env": {
+					"type": "string",
+					"value": "[parameters('default_properties_env_value')]"
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }

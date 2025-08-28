@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "dev"
 		},
+		"default_properties_env_value": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -44,6 +48,9 @@
 					},
 					"AzureBlobStorage_connectionString": {
 						"value": "[parameters('AzureBlobStorage_connectionString')]"
+					},
+					"default_properties_env_value": {
+						"value": "[parameters('default_properties_env_value')]"
 					},
 					"midnighttrigger_properties_pipeline1_parameters_env": {
 						"value": "[parameters('midnighttrigger_properties_pipeline1_parameters_env')]"

@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
+		"default_properties_env_value": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
 		"midnighttrigger_properties_pipeline1_parameters_env": {
 			"type": "string",
 			"defaultValue": "dev"
@@ -20,6 +24,18 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/globalparameters",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"env": {
+					"type": "string",
+					"value": "[parameters('default_properties_env_value')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -43,9 +59,8 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"env": {
-						"type": "string",
-						"defaultValue": "dev"
+					"containerName": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -55,7 +70,7 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": "SalesLT.SalesOrderDetail.CSV.csv",
 						"container": {
-							"value": "@concat(dataset().env,'-input')",
+							"value": "@dataset().containerName",
 							"type": "Expression"
 						}
 					},
@@ -117,9 +132,8 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"env": {
-						"type": "string",
-						"defaultValue": "dev"
+					"containerName": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -128,7 +142,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"container": {
-							"value": "@concat(dataset().env,'-output')",
+							"value": "@dataset().containerName",
 							"type": "Expression"
 						}
 					},
@@ -199,7 +213,10 @@
 								"referenceName": "DS_input",
 								"type": "DatasetReference",
 								"parameters": {
-									"env": "dev"
+									"containerName": {
+										"value": "@concat(pipeline().parameters.env, '_input')",
+										"type": "Expression"
+									}
 								}
 							}
 						],
@@ -208,7 +225,10 @@
 								"referenceName": "DS_output",
 								"type": "DatasetReference",
 								"parameters": {
-									"env": "dev"
+									"containerName": {
+										"value": "@concat(pipeline().parameters.env, '_output')\n",
+										"type": "Expression"
+									}
 								}
 							}
 						]

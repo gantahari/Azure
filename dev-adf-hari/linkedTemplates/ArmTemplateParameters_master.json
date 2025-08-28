@@ -11,6 +11,9 @@
 		"midnighttrigger_properties_pipeline1_parameters_env": {
 			"value": "dev"
 		},
+		"default_properties_env_value": {
+			"value": "dev"
+		},
 		"containerUri": {
 			"value": ""
 		},
