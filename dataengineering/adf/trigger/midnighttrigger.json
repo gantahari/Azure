@@ -12,12 +12,21 @@
 				"parameters": {
 					"env": "dev"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "SQL_ADLS",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"env": "dev"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Hour",
+				"frequency": "Day",
 				"interval": 1,
 				"startTime": "2025-08-27T15:09:00",
 				"endTime": "2025-08-27T23:09:00",
