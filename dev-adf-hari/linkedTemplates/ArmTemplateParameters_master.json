@@ -8,6 +8,9 @@
 		"AzureBlobStorage_connectionString": {
 			"value": ""
 		},
+		"midnighttrigger_properties_pipeline1_parameters_env": {
+			"value": "dev"
+		},
 		"containerUri": {
 			"value": ""
 		},
