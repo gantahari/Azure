@@ -90,6 +90,12 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"parameters": {
+					"env": {
+						"type": "string",
+						"defaultValue": "dev"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
