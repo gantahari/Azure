@@ -14,7 +14,12 @@
 		"midnighttrigger_properties_pipeline1_parameters_env": {
 			"type": "string",
 			"defaultValue": "dev"
+		},
+		"pipeline1_env": {
+			"type": "string",
+		 	"defaultValue": "dev"
 		}
+
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
@@ -72,33 +77,36 @@
 							}
 						},
 						"inputs": [
-							{
-								"referenceName": "DS_input",
-								"type": "DatasetReference",
-								"parameters": {
-									"env": "dev"
-								}
+						  {
+							"referenceName": "DS_input",
+							"type": "DatasetReference",
+							"parameters": {
+							  "env": "@pipeline().parameters.env"
 							}
+						  }
 						],
 						"outputs": [
-							{
-								"referenceName": "DS_output",
-								"type": "DatasetReference",
-								"parameters": {
-									"env": "dev"
-								}
+						  {
+							"referenceName": "DS_output",
+							"type": "DatasetReference",
+							"parameters": {
+							  "env": "@pipeline().parameters.env"
 							}
+						  }
 						]
+
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
 				"parameters": {
-					"env": {
-						"type": "string",
-						"defaultValue": "dev"
+					  "env": {
+					    "type": "string",
+					    "defaultValue": "[parameters('pipeline1_env')]"
+					  }
 					}
+
 				},
 				"annotations": []
 			},
@@ -117,11 +125,12 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"env": {
-						"type": "string",
-						"defaultValue": "dev"
-					}
-				},
+				  "env": {
+					"type": "string",
+					"defaultValue": "[parameters('pipeline1_env')]"
+				  }
+				}
+,
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
