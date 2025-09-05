@@ -1,3 +1,12 @@
+# This python code will take backup of secrets from one keyvault to another
+# This will help in DR mostly
+# This will check the secrect vaules from soure KV againest the destination KV if both are same then it doesnt do anything
+# Otherwise it will insert the secrect value from the source KV to dest KV
+# This will run as a azure function when there is a new secrect version is created in source KV with the help of events in KV
+
+
+
+
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
 

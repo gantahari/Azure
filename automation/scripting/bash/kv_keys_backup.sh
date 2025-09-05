@@ -1,8 +1,10 @@
-#!/bin/bash
-# Backup and Restore Keys between two Azure Key Vaults with conflict handling + purge wait
-# Author: Hari
+# This python code will take backup of keys from one keyvault to another
+# This will help in DR mostly
+# This script will check if keys are found in dest key then it will delete and purge it.
+# Then it will restore the keys from the backup file to dest KV
+# This will run as a azure function/Run Books when there is a new key version is created in source KV with the help of events in KV
 
-set -e
+
 
 SOURCE_VAULT="keyvault01westus2"
 DEST_VAULT="keyvault01eastus2"
