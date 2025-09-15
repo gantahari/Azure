@@ -1,0 +1,97 @@
+Service Mesh is to enhance the service to service commumications.
+
+Istio, Linkerd, Consul are popular.
+
+Istio:
+1. Open Source
+2. Security(MTLS), efficent traffic mgmt(B/G, Cannary), fault tolarance and obervability
+3. can run on k8s, mesos etc...
+
+main components are sidecar proxy(istio proxy), gateway, virtual service, destination rule, fault injection.
+
+sidecar proxy: it adds a new container to every pod and it takes care of all the routing activities with mTLS. every request comes to main container should first reach to the sidecar and it routes.
+
+gateway: manages incoming and outgoing traffic just like NSG's. It is a LB operating at the edge of mesh.
+  istiod: manages the polices, ceritificates
+  istio-ingressgateway: take cares of all the extern trafic comming into the mesh
+  istio-egressgateway: takes care of all the outgoing traffic from mesh. 
+  note: if a -> b have ingressgate then b -> a egreesgate is enabled by default but b -> a can't start request first.
+
+virtualservice: defines the set of rules for traffic coming from ingress gateway into the service mesh. like routing tables in azure
+
+destination rule: defines policies. After routing destination rules get applied.
+
+fault ingestion: for testing how services handles failures by introducing abort and delays.
+
+
+networking.istio.io/v1alpha3
+istioctl analyze
+kubectl label namespace default istio-injestion=enabled
+docker.io/istio/proxyv2:1.20.8 image is used for sidecar proxy containers
+
+
+
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: httpbin-gateway
+spec:
+  selector:
+    istio: ingressgateway 
+  servers:
+  - port:
+      number: 80
+      protocol: HTTP
+      name: http
+    hosts:
+      - httpbin.example.com
+
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: httpbin
+spec:
+  hosts:
+  - "httpbin.example.com"
+  gateways:
+  - httpbin-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /status
+    - uri:
+        prefix: /api
+    route:
+    - destination:
+        port:
+          number: 8000
+        host: httpbin
+    faults:
+      delay:
+        fixedDelay: 2s
+        percentage:  
+          value: 50
+      abort:
+        httpStatus: 400
+        percentage:
+          value: 50
+    timeout: 10s
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+      retryOn: OOMKilled
+
+
+
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: my-app-dr
+spec:
+  host: httpbin
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+
