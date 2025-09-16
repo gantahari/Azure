@@ -1,0 +1,48 @@
+to provision, configuration and deployment tool and it is an agentless 
+
+It uses python underlying
+
+why ansible is agentless: it uses SSH to connect remote server and works 
+
+inventory contains host files contains the IP address of remote server.
+
+Play books can have multiple roles and each can have tasks
+
+playbooks contains hosts and roles.
+
+Structure Of Ansible Playbook:
+ansible_root
+Inventory
+    inventory_name
+ hosts
+roles
+   python
+tasks
+main.yml
+playbook.yml
+
+ 
+
+ansible-playbook - - inventory inventory/inventory_name/hosts playbook.yml
+
+playbook.yml:
+
+name: name_of_playbook
+
+hosts: all
+
+remote_user: userNameOfRemoteServer
+
+roles:
+
+- python
+
+**SSH Keys:**
+
+public key with remote server and private keys with us 
+
+to generate public and private keys just run ssh-keygen
+
+it can be stars with - - - this is typically to separate multple operations in a same file
+
+host file: where you want to execute the commands. it can be yaml or not and it can have .ini extension

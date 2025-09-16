@@ -1,0 +1,9 @@
+By default services uses public IP to connect with other resources. But no one interested connect resources publicly. so azure introduce service endpoint. 
+
+Azure  Service End Point(no cost): Allows you to secure the azure resource. when a VM tries to connect with storage account then the connections goes within the azure backbone network only but still it uses public IP in backend.
+
+when private end point(0.14/H) created then NIC card is deployed all the services appear as same network that uses private IP address. 
+
+Private Link(No cost but underlying resources cost): private endpoint cant be used with two different subscriptions so we either use vnet peering or private link. if we use vnet peering then all the network apper as one but we dont want that we need only one VM to connect with another so private link is good option.
+
+sub1 will have private link created with NAT gateway and load balancer and sub2 will have a private endpoint
